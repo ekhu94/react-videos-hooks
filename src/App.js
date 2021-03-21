@@ -6,7 +6,9 @@ import VideoDetail from './components/VideoDetail';
 
 const App = () => {
     return (
-        <div>fuck</div>
+        <div>
+            <SearchBar />
+        </div>
     );
 };
 
