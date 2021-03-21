@@ -6,13 +6,16 @@ import useVideos from './hooks/useVideos';
 
 const App = () => {
     const [selectedVideo, setSelectedVideo] = useState(null);
+    const {videos, search} = useVideos('react javascript');
 
-    setSelectedVideo(res.data.items[0]);
+    useEffect(() => {
+        setSelectedVideo(videos[0]);
+    }, [videos]);
 
     return (
         <div className="ui container">
             <SearchBar
-                onSearchSubmit={onSearchSubmit}
+                onSearchSubmit={search}
             />
             <div className="ui grid">
                 <div className="ui row">
