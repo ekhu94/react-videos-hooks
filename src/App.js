@@ -1,26 +1,13 @@
-import youtube from './apis/youtube';
 import React, { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import VideoList from './components/VideoList';
 import VideoDetail from './components/VideoDetail';
+import useVideos from './hooks/useVideos';
 
 const App = () => {
-    const [videos, setVideos] = useState([]);
     const [selectedVideo, setSelectedVideo] = useState(null);
 
-    useEffect(() => {
-        onSearchSubmit('react js');
-    }, []);
-
-    const onSearchSubmit = async term => {
-        const res = await youtube.get('/search', {
-            params: {
-                q: term
-            }
-        });
-        setVideos(res.data.items);
-        setSelectedVideo(res.data.items[0]);
-    };
+    setSelectedVideo(res.data.items[0]);
 
     return (
         <div className="ui container">
@@ -37,7 +24,7 @@ const App = () => {
                     <div className="five wide column">
                         <VideoList
                             videos={videos}
-                            onVideoSelect={video => setSelectedVideo(video)}
+                            onVideoSelect={setSelectedVideo}
                         />
                     </div>
                 </div>
